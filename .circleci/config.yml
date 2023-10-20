@@ -19,7 +19,7 @@ jobs:
 
   deploy:
     docker:
-      - image: cimg/node:10.18
+      - image: cimg/node:18.16.0
 
     steps:
       - add_ssh_keys:
