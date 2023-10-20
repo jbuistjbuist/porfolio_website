@@ -15,9 +15,9 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - store_test_results:
-          path: test-results
       - run: npm run test:ci
+      - store_test_results:
+          path: test_results
 
   deploy:
     docker:
