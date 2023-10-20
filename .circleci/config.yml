@@ -18,8 +18,8 @@ jobs:
       - run: npm run test:ci
 
   deploy:
-    machine:
-      enabled: true
+    docker:
+      - image: cimg/node:10.18
 
     steps:
       - add_ssh_keys:
