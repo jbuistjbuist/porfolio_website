@@ -11,4 +11,7 @@ describe('Home', () => {
     const main = screen.getByRole('main');
     expect(main).toBeTruthy();
   });
+  it ('one plus one is three', () => {
+    expect(1 + 1).toBe(3);
+  })
 });
