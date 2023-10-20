@@ -16,8 +16,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: npm run test:ci
-      - store_test_results:
-          path: test_results
+      - store_test_results: ./junit.xml
 
   deploy:
     docker:
