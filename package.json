@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest --watch --coverage",
-    "test:ci": "jest --ci"
+    "test:ci": "jest --ci --reporters='default' --reporters='jest-junit'"
   },
   "dependencies": {
     "next": "13.5.6",
