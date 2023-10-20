@@ -5,7 +5,7 @@ export default function Home() {
     <>
     <h2>hello</h2>
     <main className="">
-      hello
+      hello hello
     </main>
     </>
   )
