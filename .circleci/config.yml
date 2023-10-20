@@ -24,10 +24,10 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "01:97:64:92:b9:f4:d4:ee:62:93:16:e8:98:03:f2:cd"
+            - "7f:5d:57:ff:65:3c:c0:c5:2f:32:a2:6e:80:a0:3c:ba"
       - checkout
       - run:
-          name: Push Master to Production
+          name: Push Staging to Production
           command: |
             git push https://github.com/jbuistjbuist/portfolio_website_.git staging:production
 
@@ -37,10 +37,10 @@ workflows:
       - build:
           filters:
             branches:
-              ignore: production
+              ignore: [production, dev]
       - deploy:
           filters:
             branches:
-              ignore: production
+              ignore: [production, dev]
           requires:
             - build
