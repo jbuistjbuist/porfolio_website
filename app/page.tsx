@@ -1,12 +1,13 @@
 import React from 'react'
+import { Hero, Contact, Projects } from './_sections'
 
 export default function Home() {
   return (
-    <>
-    <h2>hello</h2>
-    <main className="">
-      hello hello
+    <main>
+      <Hero />
+      <Projects />
+      <Contact />
     </main>
-    </>
   )
+  
 }
