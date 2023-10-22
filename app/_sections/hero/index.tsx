@@ -1,13 +1,14 @@
-
-
+import Background from "./background"
 
 
 export default function Hero() {
 
+
+
   return (
-    <section id="hero" aria-label="hero section">
-      hero
-    </section>
+    <Background>
+      hello
+    </Background>
   )
 
 }
