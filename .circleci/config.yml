@@ -39,10 +39,10 @@ workflows:
       - build:
           filters:
             branches:
-              ignore: [production, dev]
+              only: staging
       - deploy:
           filters:
             branches:
-              ignore: [production, dev]
+              only: staging
           requires:
             - build
