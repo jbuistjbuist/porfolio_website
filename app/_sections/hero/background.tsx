@@ -2,45 +2,37 @@
 
 import React, { useEffect, useState } from "react";
 import styles from "@/_styles/hero.module.scss";
-import { useWindowSize } from "@/_hooks";
+import { useElementSize } from "@/_hooks";
 import * as three from "three";
-
-interface ThreeInitialComponents {
-  scene: three.Scene;
-  camera: three.PerspectiveCamera;
-  renderer: three.WebGLRenderer;
-  cube: three.Mesh;
-  firstRender?: boolean;
-}
 
 export default function Background({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { width, height, initial } = useWindowSize();
-  const [started, setStarted] = useState(false);
-
-  let scene, camera, renderer, cube;
+  const ref = React.useRef<HTMLElement>(null);
+  const { width, height } = useElementSize(ref);
+  const [camera, setCamera] = useState<three.PerspectiveCamera | null>(null);
+  const [renderer, setRenderer] = useState<three.WebGLRenderer | null>(null);
 
   useEffect(() => {
-    if (!width || !height) return;
+    if (!ref.current) return;
 
-    if (!started) {
-      scene = new three.Scene();
-      camera = new three.PerspectiveCamera(75, width / height, 0.1, 1000);
-      renderer = new three.WebGLRenderer({ antialias: true });
-      renderer.setSize(width, height);
-      document.body.appendChild(renderer.domElement);
+    const scene = new three.Scene();
+    const camera = new three.PerspectiveCamera(75, width / height, 0.1, 1000);
+    const renderer = new three.WebGLRenderer({ antialias: true });
+    renderer.setSize(width, height);
+    ref.current.appendChild(renderer.domElement);
 
-      const geometry = new three.BoxGeometry();
-      const material = new three.MeshBasicMaterial({ color: 0x00ff00 });
-      cube = new three.Mesh(geometry, material);
-      scene.add(cube);
+    setCamera(camera);
+    setRenderer(renderer);
 
-      camera.position.z = 5;
-      setStarted(true);
-    }
+    const geometry = new three.BoxGeometry();
+    const material = new three.MeshBasicMaterial({ color: 0x00ff00 });
+    const cube = new three.Mesh(geometry, material);
+    scene.add(cube);
+
+    camera.position.z = 5;
 
     function animate() {
       requestAnimationFrame(animate);
@@ -49,22 +41,30 @@ export default function Background({
       cube.rotation.y += 0.01;
     }
 
-    started && animate();
+    animate();
+  }, [ref.current]);
 
-    function onResize() {
+  useEffect(() => {
+    if (!camera || !renderer) return;
+
+    function onResize(
+      camera: three.PerspectiveCamera,
+      renderer: three.WebGLRenderer
+    ) {
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
       renderer.setSize(width, height);
     }
 
-    onResize();
-  }, [width, height, started]);
+    onResize(camera, renderer);
+  }, [width, height]);
 
   return (
     <section
       id="hero__bg"
       aria-label="hero section background"
       className={styles.section}
+      ref={ref}
     >
       {children}
     </section>

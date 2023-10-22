@@ -1,2 +1,2 @@
-import useWindowSize from "./useWindowSize";
-export { useWindowSize };
+import useElementSize from "./useElementSize";
+export { useElementSize };
