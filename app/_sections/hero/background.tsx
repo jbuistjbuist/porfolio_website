@@ -16,7 +16,7 @@ export default function Background({
   const [renderer, setRenderer] = useState<three.WebGLRenderer | null>(null);
 
   useEffect(() => {
-    if (!ref.current) return;
+    if (!ref.current || !width) return;
 
     const scene = new three.Scene();
     const camera = new three.PerspectiveCamera(75, width / height, 0.1, 1000);
@@ -32,7 +32,25 @@ export default function Background({
     const cube = new three.Mesh(geometry, material);
     scene.add(cube);
 
-    camera.position.z = 5;
+    camera.position.z = 10;
+
+    ref.current.addEventListener("mousemove", (e) => {
+      const x = ((e.clientX / width) * 2 - 1) / 10;
+      const y = (-(e.clientY / height) * 2 + 1) / 10;
+      camera.position.y = y;
+      camera.position.x = x;
+      camera.updateProjectionMatrix();
+    });
+
+    window.addEventListener("wheel", (e) => {
+      const scroll = e.deltaY / 500;
+
+      window.requestAnimationFrame(() => {
+        camera.position.z += scroll;
+        camera.updateProjectionMatrix();
+      });
+
+    });
 
     function animate() {
       requestAnimationFrame(animate);
