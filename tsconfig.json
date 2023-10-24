@@ -3,6 +3,7 @@
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
+    "checkJs": false,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
@@ -21,11 +22,12 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
+      "@/*": ["./app/*"],
       "@components/*": ["app/_components/*"],
       "@styles/*": ["app/_styles/*"],
+      "@sections/*": ["app/(sections)/*"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/(sections)/_hero", "app/_utils/hexToComplimentary.js"],
   "exclude": ["node_modules"]
 }
