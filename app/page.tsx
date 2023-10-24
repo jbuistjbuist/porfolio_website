@@ -6,7 +6,7 @@ import { useColors, useElementSize } from "@/_hooks";
 import { renderBackground, onResize } from "./_utils";
 import { ArrayCamera, WebGLRenderer } from "three";
 
-export default function Background({
+export default function Home({
   children,
 }: {
   children: React.ReactNode;
