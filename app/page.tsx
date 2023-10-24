@@ -1,13 +1,12 @@
-import React from 'react'
-import { Hero, Contact, Projects } from './_sections'
+'use client'
+
+import React from "react";
+import { Hero } from "./(sections)";
 
 export default function Home() {
   return (
-    <main>
-      <Hero />
-      <Projects />
-      <Contact />
-    </main>
-  )
-  
+      <main>
+        <Hero />
+      </main>
+  );
 }

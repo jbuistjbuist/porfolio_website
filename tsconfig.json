@@ -25,9 +25,9 @@
       "@/*": ["./app/*"],
       "@components/*": ["app/_components/*"],
       "@styles/*": ["app/_styles/*"],
-      "@sections/*": ["app/_sections/*"],
+      "@sections/*": ["app/(sections)/*"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/_sections/hero", "app/_utils/hexToComplimentary.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/(sections)/_hero", "app/_utils/hexToComplimentary.js"],
   "exclude": ["node_modules"]
 }

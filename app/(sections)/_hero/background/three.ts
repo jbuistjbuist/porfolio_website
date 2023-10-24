@@ -18,7 +18,7 @@ const AMOUNT = 8;
 export const renderBackground = (
   ref: React.RefObject<HTMLElement>,
   dimensions: Dimensions,
-  colorSetter: React.Dispatch<React.SetStateAction<Colors>>
+  colorSetter: (colors: Colors) => void
 ) => {
   const { width, height } = dimensions;
   const ASPECT_RATIO = width / height;
@@ -108,7 +108,7 @@ export const renderBackground = (
       const color = Math.random() * 0xffffff;
       //@ts-ignore
       obj.material.color.setHex(color);
-      console.log(hexToComplimentary("#DEDFE1"));
+
       // @ts-ignore
       const hexColor = obj.material.color.getHexString();
       const complementary = hexToComplimentary(hexColor);
@@ -116,7 +116,7 @@ export const renderBackground = (
     }
   });
 
-  window.addEventListener("wheel", (e) => {
+   ref.current?.addEventListener("wheel", (e) => {
     const scroll = e.deltaY / 400;
 
     window.requestAnimationFrame(() => {

@@ -1,11 +1,8 @@
-"use client";
-
 import React, { useEffect, useState } from "react";
 import styles from "@/_styles/hero.module.scss";
-import { useElementSize } from "@/_hooks";
+import { useColors, useElementSize } from "@/_hooks";
 import { renderBackground, onResize } from "./three";
 import { ArrayCamera, WebGLRenderer } from "three";
-import { Colors } from "@/_typescript/interfaces";
 
 export default function Background({
   children,
@@ -16,14 +13,11 @@ export default function Background({
   const dimensions = useElementSize(ref);
   const [camera, setCamera] = useState<ArrayCamera | null>(null);
   const [renderer, setRenderer] = useState<WebGLRenderer | null>(null);
-  const [colors, setColors] = useState<Colors>({
-    title: "#2D2F32",
-    bg: "#DEDFE1",
-  });
+  const { title, bg, setColors } = useColors();
 
-  console.log(colors);
   useEffect(() => {
     if (!ref.current || !dimensions.width) return;
+    
     const { renderer, camera } = renderBackground(ref, dimensions, setColors);
     setCamera(camera);
     setRenderer(renderer);
@@ -36,7 +30,7 @@ export default function Background({
 
   return (
     <section
-      id="hero__bg"
+      id="home"
       aria-label="hero section background"
       className={styles.section}
       ref={ref}
@@ -45,7 +39,7 @@ export default function Background({
         style={{
           height: "100vh",
           width: "100",
-          background: `${colors.bg}`,
+          background: `${bg}`,
           opacity: 0.15,
           position: "absolute",
           left: 0,
@@ -57,10 +51,8 @@ export default function Background({
       {children}
 
       <div className={styles.title}>
-        <h1 style={{ color: `${colors.title}` }}>Jeremy Buist</h1>
-        <h2 style={{ color: `${colors.title}` }}>
-          Full Stack Developer
-        </h2>
+        <h1 style={{ color: `${title}` }}>Jeremy Buist</h1>
+        <h2 style={{ color: `${title}` }}>Full Stack Developer</h2>
       </div>
     </section>
   );
