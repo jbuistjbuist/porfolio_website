@@ -4,7 +4,7 @@ import { useColors } from "../_hooks";
 
 const navItems = ["Home", "AI", "Projects", "Contact", "About"];
 
-export default function Nav({ children }: { children: React.ReactNode}) {
+export default function Nav() {
   let { title } = useColors();
 
   console.log(title)
@@ -22,7 +22,6 @@ export default function Nav({ children }: { children: React.ReactNode}) {
         </a>
       ))}
     </nav>
-    {children}
     </>
   );
 }

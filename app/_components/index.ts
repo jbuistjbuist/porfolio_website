@@ -1,3 +1,3 @@
-import Bot from './bot'
+import Bot from '../(sections)/ai/page'
 
 export { Bot }

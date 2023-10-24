@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React from "react";
 import { Inter } from "next/font/google";
@@ -29,7 +29,8 @@ export default function RootLayout({
       </Helmet>
       <body className={inter.className}>
         <ColorsProvider>
-          <Nav>{children}</Nav>
+          <Nav />
+          <main>{children}</main>
         </ColorsProvider>
       </body>
     </html>
