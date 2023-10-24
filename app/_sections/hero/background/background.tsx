@@ -17,8 +17,8 @@ export default function Background({
   const [camera, setCamera] = useState<ArrayCamera | null>(null);
   const [renderer, setRenderer] = useState<WebGLRenderer | null>(null);
   const [colors, setColors] = useState<Colors>({
-    title: "#C66330",
-    bg: "#000000",
+    title: "#2D2F32",
+    bg: "#DEDFE1",
   });
 
   console.log(colors);
@@ -41,9 +41,27 @@ export default function Background({
       className={styles.section}
       ref={ref}
     >
-      <h1 style={{ color: `${colors.bg}` }}>Jeremy</h1>
-      <h1 style={{ color: `${colors.title}` }}>Jeremy</h1>
+      <div
+        style={{
+          height: "100vh",
+          width: "100",
+          background: `${colors.bg}`,
+          opacity: 0.15,
+          position: "absolute",
+          left: 0,
+          right: 0,
+          top: 0,
+          bottom: 0,
+        }}
+      ></div>
       {children}
+
+      <div className={styles.title}>
+        <h1 style={{ color: `${colors.title}` }}>Jeremy Buist</h1>
+        <h2 style={{ color: `${colors.title}` }}>
+          Full Stack Developer
+        </h2>
+      </div>
     </section>
   );
 }

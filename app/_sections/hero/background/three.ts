@@ -52,10 +52,9 @@ export const renderBackground = (
   camera.position.z = 2;
 
   const scene = new three.Scene();
-  scene.background = new three.Color(0x5b9da1);
 
   const geometryBackground = new three.PlaneGeometry(100, 100);
-  const materialBackground = new three.MeshPhongMaterial({ color: 0x75adb1 });
+  const materialBackground = new three.MeshPhongMaterial({ color: 0xdedfe1 });
 
   const background = new three.Mesh(geometryBackground, materialBackground);
   background.receiveShadow = true;
@@ -66,7 +65,7 @@ export const renderBackground = (
   const geometry = new RoundedBoxGeometry(1, 1, 1, 7, 0.25);
   const material = new three.MeshPhysicalMaterial({
     reflectivity: 0.7,
-    color: 0x75adb1,
+    color: 0xdedfe1,
     roughness: 0.7,
     // map: texture,
   });
@@ -75,10 +74,11 @@ export const renderBackground = (
   mesh.receiveShadow = true;
   scene.add(mesh);
 
-  const light = new three.DirectionalLight(0x75adb1, 11);
+  const light = new three.DirectionalLight(0xdedfe1, 5);
   light.position.set(0.8, 0.8, 10);
   light.castShadow = true;
-  light.shadow.radius = 13; // blurrier shadows
+  light.shadow.camera.zoom = 4;
+  light.shadow.radius = 20; // blurrier shadows
   scene.add(light);
 
   const renderer = new three.WebGLRenderer({ antialias: true });
@@ -108,7 +108,8 @@ export const renderBackground = (
       const color = Math.random() * 0xffffff;
       //@ts-ignore
       obj.material.color.setHex(color);
-
+      console.log(hexToComplimentary("#DEDFE1"));
+      // @ts-ignore
       const hexColor = obj.material.color.getHexString();
       const complementary = hexToComplimentary(hexColor);
       colorSetter({ title: complementary, bg: `#${hexColor}` });
@@ -125,7 +126,7 @@ export const renderBackground = (
 
           if (
             subcamera.position.z + scroll < 1.45 ||
-            subcamera.position.z + scroll > 8.5
+            subcamera.position.z + scroll > 7.5
           ) {
             return;
           }
@@ -137,9 +138,9 @@ export const renderBackground = (
   });
 
   function animate() {
-    mesh.rotation.x += 0.001;
-    mesh.rotation.y += 0.001;
-    mesh.rotation.z += 0.001;
+    mesh.rotation.x += 0.005;
+    mesh.rotation.y += 0.005;
+    mesh.rotation.z += 0.005;
 
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
