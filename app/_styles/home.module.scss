@@ -56,11 +56,11 @@
       display: none;
     }
   }
-  @media (max-height: 580px) {
-    margin-bottom: 4rem;
+  @media (max-height: 600px) {
+    bottom: 25%;
   }
   @media (max-height: 500px) {
-    margin-bottom: 6rem;
+    bottom: 35%;
   }
 }
 
