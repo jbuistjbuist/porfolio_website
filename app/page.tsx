@@ -11,7 +11,7 @@ export default function Home() {
   const dimensions = useElementSize(ref);
   const [camera, setCamera] = useState<ArrayCamera | null>(null);
   const [renderer, setRenderer] = useState<WebGLRenderer | null>(null);
-  const { title, bg, setColors } = useColors();
+  const { title, setColors } = useColors();
 
   useEffect(() => {
     if (!ref.current || !dimensions.width) return;
@@ -35,14 +35,11 @@ export default function Home() {
       className={styles.section}
       ref={ref}
     >
-      <div
-        className={styles.overlay}
-        style={{
-          background: `${bg}`,
-        }}
-      ></div>
-
-      {dimensions.width && <p className={styles.aside} style={{color: `${title}`}}>(click, scroll, drag)</p>}
+      {dimensions.width && (
+        <p className={styles.aside} style={{ color: `${title}` }}>
+          (click, scroll, drag)
+        </p>
+      )}
 
       <div className={styles.title}>
         <h1 style={{ color: `${title}` }}>Jeremy Buist</h1>

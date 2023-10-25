@@ -16,7 +16,7 @@ export default function Nav() {
       {navItems.map((item, i) => (
         <Link
           key={item}
-          className={(path === `/${item.toLowerCase()}` || path === '/' &&  item === 'Home') ? styles.current : ''}
+          className={(path.includes(`/${item.toLowerCase()}`) || path === '/' &&  item === 'Home') ? styles.current : ''}
           href={item !== 'Home' ? `/${item.toLowerCase()}` : '/'}
           style={{ color: `${title}` }}
         >
