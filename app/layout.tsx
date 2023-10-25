@@ -26,6 +26,7 @@ export default function RootLayout({
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
         <meta name="keywords" content={metadata.keywords} />
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1" />
       </Helmet>
       <body className={inter.className}>
         <ColorsProvider>

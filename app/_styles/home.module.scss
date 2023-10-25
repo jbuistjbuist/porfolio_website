@@ -1,5 +1,6 @@
 .section {
   width: 100%;
+  position: relative;
   height: 100vh;
   min-height: 600px;
   position: relative;
@@ -57,9 +58,11 @@
     }
   }
   @media (max-height: 700px) {
-    bottom: 22%;
+    @media (max-width: 400px) {
+      bottom: 22%;
+    }
   }
-  @media (max-height: 600px) {
+  @media (max-height: 500px) {
     bottom: 35%
   }
 }
