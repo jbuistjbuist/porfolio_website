@@ -24,19 +24,19 @@
   h2 {
     margin: 0;
     width: 100%;
-    margin-left: 2rem;
+    margin-left: 7rem;
     font-weight: 500;
     padding-left: 1.5rem;
   }
 
   h2:before {
-    content: "__";
+    content: ">";
     display: block;
     width: 1.5rem;
     height: 2rem;
     position: absolute;
-    left: 14.1rem;
-    bottom: -0.1;
+    left: 19.2rem;
+    bottom: -0.07rem;
   }
   @media (max-width: 768px) {
     text-align: center;
