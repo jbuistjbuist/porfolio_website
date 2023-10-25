@@ -15,6 +15,10 @@ class Subcamera extends three.PerspectiveCamera {
 
 const AMOUNT = 8;
 
+function toRadians(angle: number): number {
+	return angle * (Math.PI / 180);
+}
+
 export const renderBackground = (
   ref: React.RefObject<HTMLElement>,
   dimensions: Dimensions,
@@ -87,7 +91,7 @@ export const renderBackground = (
   renderer.shadowMap.enabled = true;
   ref.current?.appendChild(renderer.domElement);
 
-  ref.current?.addEventListener("mousedown", (e) => {
+  ref.current?.addEventListener("mouseup", (e) => {
     e.preventDefault();
     const x = (e.clientX / width) * 2 - 1;
     const y = -(e.clientY / height) * 2 + 1;
@@ -111,12 +115,12 @@ export const renderBackground = (
 
       // @ts-ignore
       const hexColor = obj.material.color.getHexString();
-      const complementary = hexToComplimentary(hexColor);
+      const complementary = hexToComplimentary(hexColor, true);
       colorSetter({ title: complementary, bg: `#${hexColor}` });
     }
   });
 
-   ref.current?.addEventListener("wheel", (e) => {
+  ref.current?.addEventListener("wheel", (e) => {
     const scroll = e.deltaY / 400;
 
     window.requestAnimationFrame(() => {
@@ -135,6 +139,47 @@ export const renderBackground = (
         }
       }
     });
+  });
+
+  let isDragging = false;
+  let previousMousePosition = {
+    x: 0,
+    y: 0,
+  };
+  ref.current?.addEventListener("mousedown", function (e) {
+      isDragging = true;
+    })
+  ref.current?.addEventListener("mousemove", function (e) {
+      var deltaMove = {
+        x: e.offsetX - previousMousePosition.x,
+        y: e.offsetY - previousMousePosition.y,
+      };
+
+      if (isDragging) {
+        var deltaRotationQuaternion = new three.Quaternion().setFromEuler(
+          new three.Euler(
+            toRadians(deltaMove.y * 1),
+            toRadians(deltaMove.x * 1),
+            0,
+            "XYZ"
+          )
+        );
+
+        mesh.quaternion.multiplyQuaternions(
+          deltaRotationQuaternion,
+          mesh.quaternion
+        );
+      }
+
+      previousMousePosition = {
+        x: e.offsetX,
+        y: e.offsetY,
+      };
+    });
+  /* */
+
+  document.addEventListener("mouseup", function (e) {
+    isDragging = false;
   });
 
   function animate() {

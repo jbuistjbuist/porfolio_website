@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React, { useEffect, useState } from "react";
 import styles from "@/_styles/home.module.scss";
@@ -15,17 +15,17 @@ export default function Home() {
 
   useEffect(() => {
     if (!ref.current || !dimensions.width) return;
-    
+
     const { renderer, camera } = renderBackground(ref, dimensions, setColors);
     setCamera(camera);
     setRenderer(renderer);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ref.current]);
 
   useEffect(() => {
     if (!camera || !renderer) return;
     onResize(dimensions, renderer, camera);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dimensions]);
 
   return (
@@ -41,6 +41,8 @@ export default function Home() {
           background: `${bg}`,
         }}
       ></div>
+
+      {dimensions.width && <p className={styles.aside} style={{color: `${title}`}}>{dimensions.width > 600 ? '(click, scroll, drag)' : '(click for color scheme)'}</p>}
 
       <div className={styles.title}>
         <h1 style={{ color: `${title}` }}>Jeremy Buist</h1>

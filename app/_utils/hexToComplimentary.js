@@ -6,7 +6,7 @@
  * @param  [String] hex : hex value  
  * @return [String] : complimentary color as hex value
  */
-export default function hexToComplimentary(hex){
+export default function hexToComplimentary(hex, darken = false){
 
   // Convert hex to rgb
   // Credit to Denis http://stackoverflow.com/a/36253499/4939630
@@ -25,7 +25,8 @@ export default function hexToComplimentary(hex){
   b /= 255.0;
   var max = Math.max(r, g, b);
   var min = Math.min(r, g, b);
-  var h, s, l = (max + min) / 2.0;
+  var h, s = (max + min) / 2.0;
+  var l = darken ? s - 0.24 : s;
 
   if(max == min) {
       h = s = 0;  //achromatic
