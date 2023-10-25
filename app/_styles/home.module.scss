@@ -56,11 +56,11 @@
       display: none;
     }
   }
-  @media (max-height: 600px) {
-    bottom: 25%;
+  @media (max-height: 700px) {
+    bottom: 22%;
   }
-  @media (max-height: 500px) {
-    bottom: 35%;
+  @media (max-height: 600px) {
+    bottom: 35%
   }
 }
 
@@ -81,4 +81,7 @@
   left: 50%;
   transform: translateX(-50%);
   font-size: 0.8rem;
+  @media (max-width: 768px) {
+    display: none;
+  }
 }

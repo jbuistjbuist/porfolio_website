@@ -42,7 +42,7 @@ export default function Home() {
         }}
       ></div>
 
-      {dimensions.width && <p className={styles.aside} style={{color: `${title}`}}>{dimensions.width > 600 ? '(click, scroll, drag)' : '(click for color scheme)'}</p>}
+      {dimensions.width && <p className={styles.aside} style={{color: `${title}`}}>(click, scroll, drag)</p>}
 
       <div className={styles.title}>
         <h1 style={{ color: `${title}` }}>Jeremy Buist</h1>
