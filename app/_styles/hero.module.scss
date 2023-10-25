@@ -6,7 +6,7 @@
 }
 
 .title {
-  text-align: left;
+  text-align: center;
   position: absolute;
   margin: 0;
   bottom: 10%;
@@ -35,7 +35,7 @@
     width: 1.5rem;
     height: 2rem;
     position: absolute;
-    left: 2rem;
+    left: 12.1rem;
     bottom: -0.1;
   }
   @media (max-width: 768px) {
@@ -55,5 +55,11 @@
     h2:before {
       display: none;
     }
+  }
+  @media (max-height: 580px) {
+    margin-bottom: 4rem;
+  }
+  @media (max-height: 500px) {
+    margin-bottom: 6rem;
   }
 }
