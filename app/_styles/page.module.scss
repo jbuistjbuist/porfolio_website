@@ -15,7 +15,17 @@
   }
 
   a:hover {
-    text-underline-offset: 0.2rem;
+    text-underline-offset: 0.3rem;
+  }
+
+  a:focus {
+    text-underline-offset: 0.3rem;
+    outline: none;
+  }
+  
+  a:active {
+    text-underline-offset: none;
+    outline: solid 0.2rem;
   }
 
 
