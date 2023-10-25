@@ -12,6 +12,7 @@
   font-weight: 500;
   a {
     padding: 0 0.5rem;
+    position: relative;
   }
 
   a:hover {
@@ -22,12 +23,11 @@
     text-underline-offset: 0.3rem;
     outline: none;
   }
-  
+
   a:active {
     text-underline-offset: none;
     outline: solid 0.2rem;
   }
-
 
   @media (max-width: 768px) {
     width: 85%;
@@ -37,4 +37,14 @@
     width: 95%;
     font-size: 0.8rem;
   }
+}
+
+.current::before{
+  content: "*";
+  position: absolute;
+  display: inline;
+  height: 0.2rem;
+  top: -0.85rem;
+  left: 50%;
+  transform: translateX(-50%);
 }

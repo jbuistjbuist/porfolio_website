@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from "react";
-import styles from "@/_styles/hero.module.scss";
+import styles from "@/_styles/home.module.scss";
 import { useColors, useElementSize } from "@/_hooks";
 import { renderBackground, onResize } from "./_utils";
 import { ArrayCamera, WebGLRenderer } from "three";
@@ -36,22 +36,15 @@ export default function Home() {
       ref={ref}
     >
       <div
+        className={styles.overlay}
         style={{
-          height: "100vh",
-          width: "100",
           background: `${bg}`,
-          opacity: 0.15,
-          position: "absolute",
-          left: 0,
-          right: 0,
-          top: 0,
-          bottom: 0,
         }}
       ></div>
 
       <div className={styles.title}>
         <h1 style={{ color: `${title}` }}>Jeremy Buist</h1>
-        <h2 style={{ color: `${title}` }}>Full Stack Developer</h2>
+        <h2 style={{ color: `${title}` }}>Web Developer</h2>
       </div>
     </section>
   );
