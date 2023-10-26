@@ -1,3 +1,5 @@
+'use client'
+
 import { Dimensions } from "@/_typescript/interfaces";
 import { RefObject, useEffect, useState } from "react";
 

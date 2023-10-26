@@ -1,3 +1,3 @@
 import hexToComplimentary from "./hexToComplimentary.js";
-import { renderBackground, onResize } from "./three";
-export { hexToComplimentary, onResize, renderBackground }
+import { renderBackground, onResizeArray, renderCube, onResize } from "./three";
+export { hexToComplimentary, onResizeArray, renderBackground, renderCube, onResize }

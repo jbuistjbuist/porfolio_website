@@ -16,12 +16,13 @@ class Subcamera extends three.PerspectiveCamera {
 const AMOUNT = 8;
 
 function toRadians(angle: number): number {
-	return angle * (Math.PI / 180);
+  return angle * (Math.PI / 180);
 }
 
 export const renderBackground = (
   ref: React.RefObject<HTMLElement>,
   dimensions: Dimensions,
+  colors: Colors,
   colorSetter: (colors: Colors) => void
 ) => {
   const { width, height } = dimensions;
@@ -69,7 +70,7 @@ export const renderBackground = (
   const geometry = new RoundedBoxGeometry(1, 1, 1, 7, 0.25);
   const material = new three.MeshPhysicalMaterial({
     reflectivity: 0.7,
-    color: 0xdedfe1,
+    color: colors?.bg ? new three.Color(colors.bg) : 0xdedfe1,
     roughness: 0.7,
     // map: texture,
   });
@@ -90,55 +91,9 @@ export const renderBackground = (
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.shadowMap.enabled = true;
   ref.current?.appendChild(renderer.domElement);
-
-  ref.current?.addEventListener("mouseup", (e) => {
-    e.preventDefault();
-    const x = (e.clientX / width) * 2 - 1;
-    const y = -(e.clientY / height) * 2 + 1;
-
-    const vector = new three.Vector3(x, y, 0.5);
-    vector.unproject(camera);
-
-    const raycaster = new three.Raycaster(
-      camera.position,
-      vector.sub(camera.position).normalize()
-    );
-
-    const intersects = raycaster.intersectObjects([mesh]);
-
-    if (intersects.length > 0) {
-      const intersection = intersects[0];
-      const obj = intersection.object;
-      const color = Math.random() * 0xffffff;
-      //@ts-ignore
-      obj.material.color.setHex(color);
-
-      // @ts-ignore
-      const hexColor = obj.material.color.getHexString();
-      const complementary = hexToComplimentary(hexColor, true);
-      colorSetter({ title: complementary, bg: `#${hexColor}` });
-    }
-  });
-
-  ref.current?.addEventListener("wheel", (e) => {
-    const scroll = e.deltaY / 400;
-
-    window.requestAnimationFrame(() => {
-      for (let y = 0; y < AMOUNT; y++) {
-        for (let x = 0; x < AMOUNT; x++) {
-          const subcamera = camera.cameras[AMOUNT * y + x];
-
-          if (
-            subcamera.position.z + scroll < 1.45 ||
-            subcamera.position.z + scroll > 7.5
-          ) {
-            return;
-          }
-          subcamera.position.z += scroll;
-          subcamera.updateMatrixWorld();
-        }
-      }
-    });
+  ref.current?.addEventListener("mouseup", (e) => onMouseUp(mesh, colorSetter));
+  ref.current?.addEventListener("wheel", (e) => onWheel(e, camera), {
+    passive: true,
   });
 
   let isDragging = false;
@@ -146,41 +101,31 @@ export const renderBackground = (
     x: 0,
     y: 0,
   };
-  ref.current?.addEventListener("mousedown", function (e) {
+  ref.current?.addEventListener(
+    "mousedown",
+    function (e) {
       isDragging = true;
-    })
-  ref.current?.addEventListener("mousemove", function (e) {
-      var deltaMove = {
-        x: e.offsetX - previousMousePosition.x,
-        y: e.offsetY - previousMousePosition.y,
-      };
-
-      if (isDragging) {
-        var deltaRotationQuaternion = new three.Quaternion().setFromEuler(
-          new three.Euler(
-            toRadians(deltaMove.y * 1),
-            toRadians(deltaMove.x * 1),
-            0,
-            "XYZ"
-          )
-        );
-
-        mesh.quaternion.multiplyQuaternions(
-          deltaRotationQuaternion,
-          mesh.quaternion
-        );
-      }
-
-      previousMousePosition = {
-        x: e.offsetX,
-        y: e.offsetY,
-      };
-    });
-  /* */
-
-  document.addEventListener("mouseup", function (e) {
-    isDragging = false;
-  });
+    },
+    { passive: true }
+  );
+  ref.current?.addEventListener(
+    "mousemove",
+    (e) =>
+      (previousMousePosition = onMouseMove(
+        e,
+        previousMousePosition,
+        isDragging,
+        mesh
+      )),
+    { passive: true }
+  );
+  document.addEventListener(
+    "mouseup",
+    function (e) {
+      isDragging = false;
+    },
+    { passive: true }
+  );
 
   function animate() {
     mesh.rotation.x += 0.005;
@@ -193,10 +138,107 @@ export const renderBackground = (
 
   animate();
 
-  return { renderer, camera };
+  return { initRenderer: renderer, initCamera: camera };
 };
 
-export function onResize(
+export const renderCube = (
+  ref: React.RefObject<HTMLElement>,
+  dimensions: Dimensions,
+  colors: Colors,
+  colorSetter: (colors: Colors) => void
+) => {
+  const { width, height } = dimensions;
+
+  const camera = new three.PerspectiveCamera(75, width / height, 0.1, 20);
+  camera.position.z = 2;
+
+  const scene = new three.Scene();
+
+  const geometry = new RoundedBoxGeometry(1, 1, 1, 7, 0.25);
+  const material = new three.MeshPhysicalMaterial({
+    reflectivity: 0.7,
+    color: new three.Color(colors.bg),
+    roughness: 0.7,
+    // map: texture,
+  });
+  const mesh = new three.Mesh(geometry, material);
+  mesh.name = "cube";
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
+  scene.add(mesh);
+
+  const light = new three.DirectionalLight(0xdedfe1, 5);
+  light.position.set(0.8, 0.8, 10);
+  light.castShadow = true;
+  light.shadow.camera.zoom = 4;
+  light.shadow.radius = 20; // blurrier shadows
+  scene.add(light);
+
+  const renderer = new three.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setSize(width, height);
+  renderer.shadowMap.enabled = true;
+  ref.current?.appendChild(renderer.domElement);
+  ref.current?.addEventListener("mouseup", () => onMouseUp(mesh, colorSetter), {
+    passive: true,
+  });
+  let isDragging = false;
+  let previousMousePosition = {
+    x: 0,
+    y: 0,
+  };
+  ref.current?.addEventListener(
+    "mousedown",
+    function (e) {
+      isDragging = true;
+    },
+    { passive: true }
+  );
+  ref.current?.addEventListener(
+    "mousemove",
+    (e) =>
+      (previousMousePosition = onMouseMove(
+        e,
+        previousMousePosition,
+        isDragging,
+        mesh
+      )),
+    { passive: true }
+  );
+  document.addEventListener(
+    "mouseup",
+    function (e) {
+      isDragging = false;
+    },
+    { passive: true }
+  );
+
+  function animate() {
+    mesh.rotation.x += 0.005;
+    mesh.rotation.y += 0.005;
+    mesh.rotation.z += 0.005;
+
+    renderer.render(scene, camera);
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  return { initRenderer: renderer, initCamera: camera };
+};
+
+export const onResize = (
+  dimensions: Dimensions,
+  renderer: three.WebGLRenderer,
+  camera: three.ArrayCamera
+) => {
+  const { width, height } = dimensions;
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+  renderer.setSize(width, height);
+};
+
+export function onResizeArray(
   dimensions: Dimensions,
   renderer: three.WebGLRenderer,
   camera: three.ArrayCamera
@@ -229,3 +271,67 @@ export function onResize(
 
   renderer.setSize(width, height);
 }
+
+const onMouseUp = (mesh: three.Mesh, colorSetter: (colors: Colors) => void) => {
+  const color = Math.random() * 0xffffff;
+  //@ts-ignore
+  mesh.material.color.setHex(color);
+  // @ts-ignore
+  const hexColor = mesh.material.color.getHexString();
+  const complementary = hexToComplimentary(hexColor, true);
+  colorSetter({ title: complementary, bg: `#${hexColor}` });
+};
+
+const onMouseMove = function (
+  e: MouseEvent,
+  previousMousePosition: { x: number; y: number },
+  isDragging: boolean,
+  mesh: three.Mesh
+) {
+  var deltaMove = {
+    x: e.offsetX - previousMousePosition.x,
+    y: e.offsetY - previousMousePosition.y,
+  };
+
+  if (isDragging) {
+    var deltaRotationQuaternion = new three.Quaternion().setFromEuler(
+      new three.Euler(
+        toRadians(deltaMove.y * 1),
+        toRadians(deltaMove.x * 1),
+        0,
+        "XYZ"
+      )
+    );
+
+    mesh.quaternion.multiplyQuaternions(
+      deltaRotationQuaternion,
+      mesh.quaternion
+    );
+  }
+
+  return (previousMousePosition = {
+    x: e.offsetX,
+    y: e.offsetY,
+  });
+};
+
+const onWheel = (e: WheelEvent, camera: three.ArrayCamera) => {
+  const scroll = e.deltaY / 400;
+
+  window.requestAnimationFrame(() => {
+    for (let y = 0; y < AMOUNT; y++) {
+      for (let x = 0; x < AMOUNT; x++) {
+        const subcamera = camera.cameras[AMOUNT * y + x];
+
+        if (
+          subcamera.position.z + scroll < 1.45 ||
+          subcamera.position.z + scroll > 7.5
+        ) {
+          return;
+        }
+        subcamera.position.z += scroll;
+        subcamera.updateMatrixWorld();
+      }
+    }
+  });
+};

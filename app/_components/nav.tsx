@@ -1,3 +1,5 @@
+'use client';
+
 import React from "react";
 import styles from "@styles/nav.module.scss";
 import { usePathname } from "next/navigation";

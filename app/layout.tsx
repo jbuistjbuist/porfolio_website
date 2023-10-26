@@ -1,18 +1,17 @@
-"use client";
 
 import React from "react";
 import { Inter } from "next/font/google";
 import "@styles/globals.scss";
 import Nav from "./_components/nav";
+import { Metadata } from "next";
 import { ColorsProvider } from "./_hooks";
-import { Helmet } from "react-helmet";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const metadata = {
+export const metadata: Metadata = {
   title: "Jeremy Buist - Web Developer",
   description: "Portfolio of Jeremy Buist, Web Developer and Designer",
-  keywords: "Jeremy Buist, Jeremy, Buist, Jeremy Buist's personal website",
+  keywords: "Jeremy Buist, Jeremy, Buist, Web Development",
 };
 
 export default function RootLayout({
@@ -22,15 +21,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Helmet>
-        <title>{metadata.title}</title>
-        <meta name="description" content={metadata.description} />
-        <meta name="keywords" content={metadata.keywords} />
-      </Helmet>
       <body className={inter.className}>
         <ColorsProvider>
-          <Nav />
-          <main>{children}</main>
+        <Nav />
+        <main>{children}</main>
         </ColorsProvider>
       </body>
     </html>

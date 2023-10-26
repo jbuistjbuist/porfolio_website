@@ -1,32 +1,36 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from "@/_styles/home.module.scss";
 import { useColors, useElementSize } from "@/_hooks";
-import { renderBackground, onResize } from "./_utils";
+import { renderBackground, onResizeArray } from "./_utils";
 import { ArrayCamera, WebGLRenderer } from "three";
 
 export default function Home() {
-  const ref = React.useRef<HTMLElement>(null);
+  const ref = useRef<HTMLElement>(null);
   const dimensions = useElementSize(ref);
   const [camera, setCamera] = useState<ArrayCamera | null>(null);
   const [renderer, setRenderer] = useState<WebGLRenderer | null>(null);
-  const { title, setColors } = useColors();
+  const { setColors, title, bg } = useColors();
 
   useEffect(() => {
     if (!ref.current || !dimensions.width) return;
+    if (camera || renderer) return;
 
-    const { renderer, camera } = renderBackground(ref, dimensions, setColors);
-    setCamera(camera);
-    setRenderer(renderer);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ref.current]);
+    const { initRenderer, initCamera } = renderBackground(
+      ref,
+      dimensions,
+      { title, bg },
+      setColors
+    );
+    setCamera(initCamera);
+    setRenderer(initRenderer);
+  }, [ref.current, dimensions, camera, renderer]);
 
   useEffect(() => {
     if (!camera || !renderer) return;
-    onResize(dimensions, renderer, camera);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dimensions]);
+    onResizeArray(dimensions, renderer, camera);
+  }, [dimensions, renderer, camera]);
 
   return (
     <section
@@ -36,9 +40,7 @@ export default function Home() {
       ref={ref}
     >
       {dimensions.width && (
-        <p className={styles.aside}>
-          (click, scroll, drag)
-        </p>
+        <p className={styles.aside}>(click, scroll, drag)</p>
       )}
 
       <div className={styles.title}>

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useContext, createContext, useState } from "react";
 import { Colors } from "@/_typescript/interfaces";
 

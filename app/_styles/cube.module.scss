@@ -1,0 +1,10 @@
+
+.cube {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  left: 50%;
+  top: -15px;
+  transform: translateX(-50%);
+  z-index: 20;
+}
