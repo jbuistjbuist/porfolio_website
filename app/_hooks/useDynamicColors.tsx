@@ -24,7 +24,12 @@ export function ColorsProvider({
     bg: "#DEDFE1",
   });
 
-  const value = { ...colors, setColors };
+  const handleSetColors = (colors: Colors) => {
+    window.document.body.style.setProperty("--foreground", colors.title);
+    window.document.body.style.setProperty("--background", colors.bg);
+    setColors(colors);
+  }
+  const value = { ...colors, setColors: handleSetColors };
 
   return (
     // @ts-ignore

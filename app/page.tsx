@@ -36,14 +36,14 @@ export default function Home() {
       ref={ref}
     >
       {dimensions.width && (
-        <p className={styles.aside} style={{ color: `${title}` }}>
+        <p className={styles.aside}>
           (click, scroll, drag)
         </p>
       )}
 
       <div className={styles.title}>
-        <h1 style={{ color: `${title}` }}>Jeremy Buist</h1>
-        <h2 style={{ color: `${title}` }}>Web Developer</h2>
+        <h1>Jeremy Buist</h1>
+        <h2>Web Developer</h2>
       </div>
     </section>
   );
