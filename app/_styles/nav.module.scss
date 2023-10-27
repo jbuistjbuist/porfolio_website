@@ -49,3 +49,8 @@
   left: 50%;
   transform: translateX(-50%);
 }
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}

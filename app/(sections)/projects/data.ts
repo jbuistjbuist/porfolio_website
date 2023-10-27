@@ -19,6 +19,8 @@ export const projectsList = [
       "Vercel",
     ],
     githubLink: "https://github.com/jbuistjbuist/portfolio_website_",
+    smallPhoto: "/images/projects/portfolio-small.jpg",
+    largePhoto: "/images/projects/portfolio-large.png",
   },
   {
     title: "Titan Exercise",
@@ -41,6 +43,8 @@ export const projectsList = [
     ],
     githubLink: "https://github.com/jbuistjbuist/Titan-Exercise",
     liveLink: "https://titan-exercise.netlify.app",
+    smallPhoto: "/images/projects/titan-small.png",
+    largePhoto: "/images/projects/titan-large.gif",
   },
   {
     title: "Basic Checks",
@@ -53,6 +57,8 @@ export const projectsList = [
     ],
     techStack: ["Python", "Selenium", "Google Cloud Platform", "Zendesk API"],
     githubLink: "https://github.com/jbuistjbuist/basic_checks_script",
+    smallPhoto: "/images/projects/basic-checks-small.png",
+    largePhoto: "/images/projects/basic-checks-large.png",
   },
   {
     title: "Quizzer App",
@@ -65,6 +71,8 @@ export const projectsList = [
     ],
     techStack: ["Javascript", "SASS", "EJS", "Node.js"],
     githubLink: "https://github.com/jbuistjbuist/Quizzer-App",
+    smallPhoto: "/images/projects/quizzer-small.png",
+    largePhoto: "/images/projects/quizzer-large.png",
   },
   {
     title: "Form Cache",
@@ -79,5 +87,7 @@ export const projectsList = [
     githubLink: "https://github.com/jbuistjbuist/form-saver",
     liveLink:
       "https://chrome.google.com/webstore/detail/form-cache/boipndakjadokbbceajjkdfnaadhgdck",
+    smallPhoto: "/images/projects/form-cache-small.png",
+    largePhoto: "/images/projects/form-cache-large.jpeg",
   },
 ];

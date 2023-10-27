@@ -35,14 +35,14 @@ export default function Project() {
     prev = projectsList[length - 1].href;
   }
 
-  const { title, techStack, longDescription, githubLink, liveLink } = project;
+  const { title, techStack, longDescription, githubLink, liveLink, largePhoto } = project;
 
   return (
     <Section title={title} next={next} prev={prev}>
       <div className={styles.project}>
         <Image
           alt="project image"
-          src="/images/Postgresql_elephant.svg.png"
+          src={largePhoto}
           width={400}
           height={400}
         />

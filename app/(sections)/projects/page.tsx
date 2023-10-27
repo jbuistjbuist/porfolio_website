@@ -9,11 +9,11 @@ export default function Projects() {
     <Section title="Projects">
       <div className={styles.layout}>
       {projectsList.map((project) => {
-        const { title, shortDescription, href, techStack } = project;
+        const { title, shortDescription, href, techStack, smallPhoto } = project;
 
         return (
           <Link href={href}>
-            <Image alt="project image" src="/images/Postgresql_elephant.svg.png" width={180} height={180} />
+            <Image alt="project image" src={smallPhoto} width={180} height={180} />
             <h2>{title}</h2>
             <p>{shortDescription}</p>
             <div className={styles.techStack}>
