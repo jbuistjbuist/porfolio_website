@@ -7,8 +7,6 @@ sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
 export async function POST(req: NextRequest) {
   const data = await req.json();
 
-  console.log("data", data);
-
   try {
     await sendgrid.send({
       to: "jeremy.j.buist@gmail.com", // Your email where you'll receive emails
