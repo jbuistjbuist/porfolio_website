@@ -1,7 +1,9 @@
 
 :root {
- --foreground: #2D2F32
- --background: #DEDFE1
+ --foreground: #2D2F32;
+ --background: #DEDFE1;
+ --header-height: 130px;
+ --footer-height: 60px;
 }
 
 body {
@@ -19,12 +21,6 @@ canvas {
   bottom: 0;
   right: 0;
   z-index: -1;
-}
-
-section {
-  width: 100%;
-  position: relative;
-  height: 100vh;
 }
 
 main {

@@ -1,5 +1,8 @@
 .section {
+  overflow: scroll;
+  margin: var(--header-height) auto 0 auto;
   width: 95%;
   max-width: 1000px;
-  margin: 150px auto 0 auto;
+  max-height: calc(100vh - var(--header-height) - var(--footer-height));
+
 }
