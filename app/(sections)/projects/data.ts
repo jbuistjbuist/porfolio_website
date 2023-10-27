@@ -15,6 +15,7 @@ export const projectsList = [
       "SASS",
       "CircleCI",
       "Jest",
+      "Sendgrid",
       "Typescript",
       "Vercel",
     ],
