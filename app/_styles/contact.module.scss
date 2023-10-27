@@ -73,9 +73,52 @@
   @media screen and (max-width: 700px) {
     width: 100%;
 
-    input, textarea {
+    input,
+    textarea {
       width: 70%;
     }
-    
   }
+}
+
+.status {
+  p {
+    font-size: 0.8rem;
+    margin: 0.5rem auto 1rem;
+    font-weight: 500;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.spinner {
+  svg{ 
+  @-moz-keyframes spin {
+    from {
+      -moz-transform: rotate(0deg);
+    }
+    to {
+      -moz-transform: rotate(360deg);
+    }
+  }
+  @-webkit-keyframes spin {
+    from {
+      -webkit-transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  animation: spin 1s linear infinite;
+  --webkit-animation: spin 1s linear infinite;
+  --moz-animation: spin 1s linear infinite;
+}
+
 }

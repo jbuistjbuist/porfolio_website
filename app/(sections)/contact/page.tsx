@@ -4,6 +4,8 @@ import { useState } from "react";
 import Section from "@/_components/section";
 import { ChangeEvent, FormEvent } from "react";
 import styles from "@styles/contact.module.scss";
+import axios from "axios";
+import { FaSpinner } from "react-icons/fa";
 
 export default function Contact() {
   const [data, setData] = useState({
@@ -13,6 +15,7 @@ export default function Contact() {
   });
 
   const [error, setError] = useState<null | string>(null);
+  const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const validateData = (data: {
@@ -35,8 +38,26 @@ export default function Contact() {
     return true;
   };
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setError(null);
+    setSuccess(false);
+    setLoading(true);
+    if (!validateData(data)) return;
+
+    const res = await axios.post("/api/contact", data);
+
+    if (res.status === 200) {
+      setData({ name: "", email: "", message: "" });
+      setSuccess(true);
+      setTimeout(() => {
+        setSuccess(false);
+      }, 3000);
+    } else {
+      setError("Something went wrong, please try again later");
+    }
+
+    setLoading(false);
   };
 
   const onChange = (e: ChangeEvent) => {
@@ -52,19 +73,26 @@ export default function Contact() {
         Fill out the form below to shoot me a message, or you can contact me at{" "}
         <a href="mailto:jeremy.j.buist@gmail.com">jeremy.j.buist@gmail.com</a>.
       </p>
-      {!loading && (
-        <form name="contact" onSubmit={onSubmit} className={styles.form}>
-          <label htmlFor="name">Name</label>
-          <input id="name" type="text" onChange={onChange} required />
-          <label htmlFor="email">Email</label>
-          <input id="email" type="email" onChange={onChange} required />
-          <label htmlFor="message">Message</label>
-          <textarea id="message" rows={5} onChange={onChange} />
-          <button type="submit">Send</button>
-        </form>
-      )}
-      {error && <p>{error}</p>}
-      {loading && <p>Loading...</p>}
+      <div className={styles.status}>{error && <p>{error}</p>}</div>
+      <form name="contact" onSubmit={onSubmit} className={styles.form}>
+        <label htmlFor="name">Name</label>
+        <input id="name" type="text" onChange={onChange} required />
+        <label htmlFor="email">Email</label>
+        <input id="email" type="email" onChange={onChange} required />
+        <label htmlFor="message">Message</label>
+        <textarea id="message" rows={5} onChange={onChange} />
+        <button type="submit">
+          {loading ? (
+            <span className={styles.spinner}>
+              <FaSpinner />
+            </span>
+          ) : success ? (
+            "Message Sent!"
+          ) : (
+            "Send"
+          )}
+        </button>
+      </form>
     </Section>
   );
 }
