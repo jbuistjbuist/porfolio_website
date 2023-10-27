@@ -9,6 +9,10 @@
 
 .header {
   position: sticky;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 3.5rem;
   top: 0;
   width: 100%;
   background: var(--default-bg);
@@ -20,5 +24,21 @@
     padding: 0;
     font-weight: 700;
     color: var(--foreground);
+  }
+  a {
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--foreground);
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.3rem;
+  }
+  a:active, a:focus {
+    text-decoration: none;
+    outline: none;
+    color: var(--background);
   }
 }

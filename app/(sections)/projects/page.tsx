@@ -13,7 +13,7 @@ export default function Projects() {
 
         return (
           <Link href={href}>
-            <Image alt="image" src="/images/Postgresql_elephant.svg.png" width={180} height={180} />
+            <Image alt="project image" src="/images/Postgresql_elephant.svg.png" width={180} height={180} />
             <h2>{title}</h2>
             <p>{shortDescription}</p>
             <div className={styles.techStack}>
