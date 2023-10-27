@@ -1,34 +1,30 @@
-import { projectsList } from "./data"
-import styles from "@styles/section.module.scss"
+import { projectsList } from "./data";
 import Link from "next/link";
 import Image from "next/image";
-
+import Section from "@/_components/section";
+import styles from "@styles/projects.module.scss";
 
 export default function Projects() {
-
-
   return (
-    <section id="projects" aria-label="projects section" className={styles.section}>
-      <h1>Projects</h1>
+    <Section title="Projects">
+      <div className={styles.layout}>
       {projectsList.map((project) => {
-        const {title, shortDescription, href, techStack} = project;
+        const { title, shortDescription, href, techStack } = project;
 
         return (
           <Link href={href}>
+            <Image alt="image" src="/images/Postgresql_elephant.svg.png" width={180} height={180} />
             <h2>{title}</h2>
             <p>{shortDescription}</p>
-            <p>
-              {
-                techStack?.map((str) => {
-                  return (
-                    <span>{str}</span>
-                  )
-                })
-              }
-            </p>
+            <div className={styles.techStack}>
+              {techStack?.map((str) => {
+                return <span>{str} </span>;
+              })}
+            </div>
           </Link>
-        )
+        );
       })}
-    </section>
-  )
+      </div>
+    </Section>
+  );
 }

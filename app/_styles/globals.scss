@@ -2,12 +2,13 @@
 :root {
  --foreground: #2D2F32;
  --background: #DEDFE1;
- --header-height: 130px;
- --footer-height: 60px;
+ --header-height: 140px;
+ --footer-height: 55px;
+ --default-bg: #ecedef
 }
 
 body {
-  background: #ecedef;
+  background: var(--default-bg);
   width: 100%;
   height: 100vh;
   margin: 0;
