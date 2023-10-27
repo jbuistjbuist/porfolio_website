@@ -5,7 +5,7 @@ import styles from "@styles/nav.module.scss";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
-const navItems = ["Home", "AI", "Projects", "Contact", "About"];
+const navItems = ["Home", "AI", "Projects", "About", "Contact"];
 
 export default function Nav() {
   const path = usePathname();

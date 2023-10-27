@@ -1,0 +1,91 @@
+
+.layout {
+  margin: 0 auto;
+  padding: 1rem;
+  width: 60%;
+  height: calc(100% - 80px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  @media screen and (max-width: 900px) {
+    width: 80%;
+  }
+
+}
+
+.messages {
+  border: solid 0.1rem var(--background);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: stretch;
+  height: 80%;
+  max-width: 700px;
+  max-height: 500px;
+  min-height: 220px;
+  padding: 1rem;
+  overflow-y: scroll;
+}
+
+.inboundMsg {
+  align-self: flex-start;
+  max-width: 75%;
+  padding: 0.4rem;
+  border: solid 0.1rem var(--background);
+}
+
+.outboundMsg {
+  align-self: flex-end;
+  max-width: 75%;
+  text-align: right;
+  padding: 0.5rem;
+  background: var(--foreground);
+  color: #FFF
+}
+
+
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+
+  input {
+    width: 60%;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    border: solid 0.1rem var(--background);
+    text-align: center;
+    font-family: inherit;
+  }
+  input:focus {
+    outline: none;
+    border: solid 0.1rem var(--foreground);
+  }
+
+  button {
+    width: 20%;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    border: solid 0.1rem var(--background);
+    background: transparent;
+    color: var(--foreground);
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  button:hover {
+    border: solid 0.1rem var(--foreground);
+  }
+
+  button:focus {
+    outline: none;
+    border: solid 0.1rem var(--foreground);
+  }
+}

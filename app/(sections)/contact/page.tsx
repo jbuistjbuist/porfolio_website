@@ -70,8 +70,7 @@ export default function Contact() {
     <Section title="Contact">
       <p className={styles.header}>Let's get in touch!</p>
       <p className={styles.subHeader}>
-        Fill out the form below to shoot me a message, or you can contact me at{" "}
-        <a href="mailto:jeremy.j.buist@gmail.com">jeremy.j.buist@gmail.com</a>.
+        Fill out the form below to shoot me a message.
       </p>
       <div className={styles.status}>{error && <p>{error}</p>}</div>
       <form name="contact" onSubmit={onSubmit} className={styles.form}>
