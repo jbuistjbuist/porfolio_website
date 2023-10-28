@@ -22,7 +22,7 @@ export default function Projects() {
             <Image alt="project image" src={smallPhoto} width={180} height={180} priority={true} />
             <h2>{title}</h2>
             <p>{shortDescription}</p>
-            <div className={styles.techStack}>
+            <div className={styles.techStack} aria-label="tech stack">
               {techStack?.map((str, index) => {
                 return <span key={str + index}>{str} </span>;
               })}

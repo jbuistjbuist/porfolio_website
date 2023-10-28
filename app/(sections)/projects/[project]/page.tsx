@@ -64,7 +64,7 @@ export default function Project() {
               </Link>
             )}
           </div>
-          <div className={styles.techStack}>
+          <div className={styles.techStack} aria-label="tech stack">
             {techStack?.map((str, index) => {
               return <span key={str + index}>{str}</span>;
             })}
