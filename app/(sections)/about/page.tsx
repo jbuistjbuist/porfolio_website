@@ -49,7 +49,7 @@ export default function About() {
             <a href="https://github.com/jbuistjbuist" rel="noopener" target="_blank">
               GitHub <FaGithub />
             </a>
-            <a href="https://resume.creddle.io/resume/dupdgag4i8p">
+            <a href="https://resume.creddle.io/resume/dupdgag4i8p" rel="noopener" target="_blank">
               Resume <HiOutlineDocumentText />
             </a>
         </div>

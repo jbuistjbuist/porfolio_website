@@ -3,7 +3,7 @@
 import { FaGithub } from "react-icons/fa";
 import { RxOpenInNewWindow } from "react-icons/rx";
 import { projectsList } from "../data";
-import { usePathname } from "next/navigation";
+import { usePathname, notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import Section from "@/_components/section";
@@ -17,7 +17,7 @@ export default function Project() {
   const project = projectsList[projectIndex];
 
   if (!project) {
-    return <h1>404</h1>;
+    return notFound();
   }
 
   let next, prev;
@@ -35,17 +35,19 @@ export default function Project() {
     prev = projectsList[length - 1].href;
   }
 
-  const { title, techStack, longDescription, githubLink, liveLink, largePhoto } = project;
+  const {
+    title,
+    techStack,
+    longDescription,
+    githubLink,
+    liveLink,
+    largePhoto,
+  } = project;
 
   return (
     <Section title={title} next={next} prev={prev}>
       <div className={styles.project}>
-        <Image
-          alt="project image"
-          src={largePhoto}
-          width={400}
-          height={400}
-        />
+        <Image alt="project image" src={largePhoto} width={400} height={400} />
         <div>
           {longDescription.map((paragraph) => (
             <p key={`${Math.random()}`}>{paragraph}</p>
