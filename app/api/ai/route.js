@@ -69,7 +69,7 @@ export async function POST(req) {
 
   console.log("embeddings", embeddings)
 
-  const matches = await getMatchesFromEmbeddings(embeddings, pinecone, 3);
+  const matches = await getMatchesFromEmbeddings(embeddings, pinecone, 2);
 
   const urls =
     matches &&
@@ -116,7 +116,7 @@ export async function POST(req) {
 
   const chat = new ChatOpenAI({
     streaming: true,
-    temperature: 0.3,
+    temperature: 0.4,
     modelName: "gpt-3.5-turbo",
     openAIApiKey: process.env.OPENAI_API_KEY,
   });
