@@ -5,6 +5,7 @@ import "@styles/globals.scss";
 import Nav from "./_components/nav";
 import { Metadata } from "next";
 import { ColorsProvider } from "./_hooks";
+import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
         <Nav />
         <main>{children}</main>
         </ColorsProvider>
+        <Analytics />
       </body>
     </html>
   );
