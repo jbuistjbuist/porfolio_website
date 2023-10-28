@@ -1,3 +1,5 @@
+@use 'mixins';
+
 .image {
   object-fit: cover;
   object-position: top;
@@ -51,45 +53,9 @@
 }
 
 .extLinks {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  gap: 0.6rem;
-  a {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    text-decoration: none;
-    color: var(--foreground);
-    font-size: 1rem;
-    font-weight: 500;
-    border: solid 0.2rem transparent;
-    padding: 0.1rem;
-    padding-bottom: 0;
-    margin-bottom: 0.5rem;
-  }
-
-  a:hover {
-    text-decoration: underline;
-    text-underline-offset: 0.3rem;
-  }
-
-  a:active {
-    border: solid 0.2rem var(--foreground);
-  }
-
-  a:focus {
-    outline: none;
-    border: 0.2rem solid var(--foreground);
-  }
+  @include mixins.external-links;
 }
 
 .img {
-  width: 400px;
-  height: 400px;
-  @media screen and (max-width: 500px) {
-    width: 90%;
-    height: auto;
-    object-fit: cover;
-  }
+  @include mixins.section-image;
 }

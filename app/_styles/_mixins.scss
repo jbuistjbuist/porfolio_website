@@ -1,0 +1,67 @@
+@mixin external-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 0.6rem;
+  a {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    text-decoration: none;
+    color: var(--foreground);
+    font-size: 1rem;
+    font-weight: 500;
+    border: solid 0.2rem transparent;
+    padding: 0.1rem;
+    padding-bottom: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.3rem;
+  }
+
+  a:active {
+    border: solid 0.2rem var(--foreground);
+  }
+
+  a:focus {
+    outline: none;
+    border: 0.2rem solid var(--foreground);
+  }
+}
+
+@mixin section-image {
+  width: 400px;
+  height: 400px;
+  @media screen and (max-width: 500px) {
+    width: 90%;
+    height: auto;
+    object-fit: cover;
+  }
+}
+
+@mixin submit-button {
+  button {
+    width: 20%;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    border: solid 0.1rem var(--background);
+    background: transparent;
+    color: var(--foreground);
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  button:hover {
+    border: solid 0.1rem var(--foreground);
+  }
+
+  button:focus {
+    outline: none;
+    border: solid 0.1rem var(--foreground);
+  }
+}

@@ -1,3 +1,5 @@
+@use 'mixins';
+
 .header {
   font-size: 1.1rem;
   font-weight: 500;
@@ -39,27 +41,7 @@
     font-family: inherit;
   }
 
-  button {
-    width: 20%;
-    margin-top: 0.5rem;
-    padding: 0.5rem;
-    border: solid 0.1rem var(--background);
-    background: transparent;
-    color: var(--foreground);
-    font-family: inherit;
-    font-size: 0.8rem;
-    font-weight: 500;
-    cursor: pointer;
-  }
-
-  button:hover {
-    border: solid 0.1rem var(--foreground);
-  }
-
-  button:focus {
-    outline: none;
-    border: solid 0.1rem var(--foreground);
-  }
+  @include mixins.submit-button;
 
   input:focus,
   textarea:focus {
