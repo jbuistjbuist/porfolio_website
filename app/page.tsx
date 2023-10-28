@@ -5,6 +5,7 @@ import styles from "@/_styles/home.module.scss";
 import { useColors, useElementSize } from "@/_hooks";
 import { renderBackground, onResizeArray } from "./_utils";
 import { ArrayCamera, WebGLRenderer } from "three";
+import { useCustomVh } from '@/_hooks'
 
 export default function Home() {
   const ref = useRef<HTMLElement>(null);
@@ -12,6 +13,8 @@ export default function Home() {
   const [camera, setCamera] = useState<ArrayCamera | null>(null);
   const [renderer, setRenderer] = useState<WebGLRenderer | null>(null);
   const { setColors, title, bg } = useColors();
+  
+  useCustomVh()
 
   useEffect(() => {
     if (!ref.current || !dimensions.width) return;

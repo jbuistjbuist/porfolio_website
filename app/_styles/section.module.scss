@@ -5,10 +5,10 @@
   width: 95%;
   max-width: 1200px;
   height: calc(100vh - var(--header-height) - var(--footer-height));
+  height: calc(var(--100vh) - var(--header-height) - var(--footer-height));
   ::-webkit-scrollbar {
     display: none;
   }
-
   -ms-overflow-style: none;
   scrollbar-width: none;
 }

@@ -98,6 +98,9 @@
 
   img {
     object-fit: contain;
+    @media screen and (max-width: 500px) {
+      width: 90%;
+    }
   }
 
   @media (max-width: 900px) {

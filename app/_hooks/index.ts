@@ -1,3 +1,4 @@
 import useElementSize from "./useElementSize";
 import { useColors, ColorsProvider } from "./useDynamicColors";
-export { useElementSize, useColors, ColorsProvider };
+import useCustomVh from "./useCustomVh";
+export { useElementSize, useColors, ColorsProvider, useCustomVh };

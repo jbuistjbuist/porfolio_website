@@ -1,10 +1,16 @@
+'use client'
+
 import { projectsList } from "./data";
 import Link from "next/link";
 import Image from "next/image";
 import Section from "@/_components/section";
 import styles from "@styles/projects.module.scss";
+import { useCustomVh } from "@/_hooks";
 
 export default function Projects() {
+
+  useCustomVh();
+
   return (
     <Section title="Projects">
       <div className={styles.layout}>
