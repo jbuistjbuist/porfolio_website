@@ -25,7 +25,7 @@ export default function Cube() {
     );
     setCamera(initCamera);
     setRenderer(initRenderer);
-  }, [ref.current, dimensions, camera, renderer]);
+  }, [ref.current, dimensions, camera, renderer, title, bg, setColors]);
 
   return (
     <>

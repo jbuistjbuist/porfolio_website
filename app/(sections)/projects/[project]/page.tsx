@@ -48,7 +48,7 @@ export default function Project() {
         />
         <div>
           {longDescription.map((paragraph) => (
-            <p>{paragraph}</p>
+            <p key={`${Math.random()}`}>{paragraph}</p>
           ))}
           <div className={styles.extLinks}>
             {githubLink && (
@@ -63,8 +63,8 @@ export default function Project() {
             )}
           </div>
           <div className={styles.techStack}>
-            {techStack?.map((str) => {
-              return <span>{str} </span>;
+            {techStack?.map((str, index) => {
+              return <span key={str + index}>{str}</span>;
             })}
           </div>
         </div>

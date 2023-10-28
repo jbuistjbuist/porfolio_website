@@ -21,7 +21,7 @@ export default function About() {
             Hi! My name is Jeremy and I am a full stack web developer from
             Hamilton, Ontario, currently living in Montréal, Québec. I graduated
             from the <a href='https://www.lighthouselabs.ca'>Lighthouse Labs</a> Web Development Bootcamp in 2022, and
-            previously graduated from McGill University with a Master's in
+            previously graduated from McGill University with a Master&apos;s in
             Sociology, where I focused on sociological theory and methods. I was
             drawn to web development because I like to tackle complex problems
             in my work, and enjoy expressing my creativity through code.

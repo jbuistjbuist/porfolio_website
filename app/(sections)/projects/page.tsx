@@ -12,13 +12,13 @@ export default function Projects() {
         const { title, shortDescription, href, techStack, smallPhoto } = project;
 
         return (
-          <Link href={href}>
+          <Link href={href} key={title}>
             <Image alt="project image" src={smallPhoto} width={180} height={180} />
             <h2>{title}</h2>
             <p>{shortDescription}</p>
             <div className={styles.techStack}>
-              {techStack?.map((str) => {
-                return <span>{str} </span>;
+              {techStack?.map((str, index) => {
+                return <span key={str + index}>{str} </span>;
               })}
             </div>
           </Link>

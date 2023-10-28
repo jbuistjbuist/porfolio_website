@@ -30,7 +30,7 @@ export default function Home() {
   useEffect(() => {
     if (!camera || !renderer) return;
     onResizeArray(dimensions, renderer, camera);
-  }, [dimensions, renderer, camera]);
+  }, [dimensions, renderer, camera, title, bg, setColors]);
 
   return (
     <section

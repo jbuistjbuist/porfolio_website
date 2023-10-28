@@ -68,7 +68,7 @@ export default function Contact() {
 
   return (
     <Section title="Contact">
-      <p className={styles.header}>Let's get in touch!</p>
+      <p className={styles.header}>Let&apos;s get in touch!</p>
       <p className={styles.subHeader}>
         Fill out the form below to shoot me a message.
       </p>
