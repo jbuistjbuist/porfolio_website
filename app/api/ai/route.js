@@ -69,7 +69,7 @@ export async function POST(req) {
 
   console.log("embeddings", embeddings)
 
-  const matches = await getMatchesFromEmbeddings(embeddings, pinecone, 2);
+  const matches = await getMatchesFromEmbeddings(embeddings, pinecone, 3);
 
   const urls =
     matches &&
