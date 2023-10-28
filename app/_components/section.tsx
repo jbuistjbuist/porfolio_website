@@ -17,13 +17,13 @@ export default function Section({
     <section aria-labelledby="sectionHeader" className={styles.section}>
       <div className={styles.header}>
         {prev && (
-          <Link href={prev}>
+          <Link href={prev} aria-label="previous project">
             <BsArrowLeft />
           </Link>
         )}
         <h1 id="sectionHeader">{title}</h1>
         {next && (
-          <Link href={next}>
+          <Link href={next} aria-label="next project">
             <BsArrowRight />
           </Link>
         )}
