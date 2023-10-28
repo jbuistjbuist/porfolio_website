@@ -1,18 +1,16 @@
-'use client'
-
 import { projectsList } from "./data";
 import Link from "next/link";
 import Image from "next/image";
 import Section from "@/_components/section";
 import styles from "@styles/projects.module.scss";
-import { useCustomVh } from "@/_hooks";
+import { UseCustomVh } from "@/_hooks";
 
 export default function Projects() {
 
-  useCustomVh();
 
   return (
     <Section title="Projects">
+      <UseCustomVh />
       <div className={styles.layout}>
       {projectsList.map((project) => {
         const { title, shortDescription, href, techStack, smallPhoto } = project;

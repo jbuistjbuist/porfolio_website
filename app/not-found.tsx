@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import Section from "./_components/section";
 import styles from "@/_styles/404.module.scss";

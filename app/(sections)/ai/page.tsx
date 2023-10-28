@@ -1,15 +1,14 @@
-"use client";
+'use client';
+
 import Section from "@/_components/section";
 import { useChat } from "ai/react";
 import styles from "@styles/ai.module.scss";
 import ReactMarkdown from "react-markdown";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
-import { useCustomVh } from "@/_hooks";
+import { UseCustomVh } from "@/_hooks";
 
 export default function Ai() {
-
-  useCustomVh();
   
   const initialMessage = [
     {
@@ -29,6 +28,7 @@ export default function Ai() {
 
   return (
     <Section title="AI">
+      <UseCustomVh />
       <div className={styles.layout}>
         <div className={styles.messages}>
           {messages.map((m) => (

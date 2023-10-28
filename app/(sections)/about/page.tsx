@@ -1,19 +1,16 @@
-'use client'
-
 import Section from "@/_components/section";
 import Image from "next/image";
 import styles from "@styles/about.module.scss";
 import { FaGithub } from "react-icons/fa";
 import { BsLinkedin } from "react-icons/bs";
 import { HiOutlineDocumentText } from "react-icons/hi";
-import { useCustomVh } from "@/_hooks";
+import { UseCustomVh } from "@/_hooks";
 
 export default function About() {
 
-  useCustomVh()
-
   return (
     <Section title="About">
+      <UseCustomVh />
       <div className={styles.layout}>
         <Image
           src="/images/selfie.png"
