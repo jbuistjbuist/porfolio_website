@@ -5,7 +5,7 @@ import styles from "@/_styles/home.module.scss";
 import { useColors, useElementSize } from "@/_hooks";
 import { renderBackground, onResizeArray } from "./_utils";
 import { ArrayCamera, WebGLRenderer } from "three";
-import { useCustomVh } from '@/_hooks'
+import { useCustomVh } from "@/_hooks";
 
 export default function Home() {
   const ref = useRef<HTMLElement>(null);
@@ -13,26 +13,33 @@ export default function Home() {
   const [camera, setCamera] = useState<ArrayCamera | null>(null);
   const [renderer, setRenderer] = useState<WebGLRenderer | null>(null);
   const { setColors, title, bg } = useColors();
-  
-  useCustomVh()
+
+  useCustomVh();
 
   useEffect(() => {
     if (!ref.current || !dimensions.width) return;
     if (camera || renderer) return;
-
-    const { initRenderer, initCamera } = renderBackground(
-      ref,
-      dimensions,
-      { title, bg },
-      setColors
-    );
-    setCamera(initCamera);
-    setRenderer(initRenderer);
+    try {
+      const { initRenderer, initCamera } = renderBackground(
+        ref,
+        dimensions,
+        { title, bg },
+        setColors
+      );
+      setCamera(initCamera);
+      setRenderer(initRenderer);
+    } catch (err) {
+      console.error(err);
+    }
   }, [ref.current, dimensions, camera, renderer]);
 
   useEffect(() => {
     if (!camera || !renderer) return;
-    onResizeArray(dimensions, renderer, camera);
+    try {
+      onResizeArray(dimensions, renderer, camera);
+    } catch (err) {
+      console.error(err);
+    }
   }, [dimensions, renderer, camera, title, bg, setColors]);
 
   return (

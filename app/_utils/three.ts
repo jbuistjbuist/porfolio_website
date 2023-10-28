@@ -25,6 +25,7 @@ export const renderBackground = (
   colors: Colors,
   colorSetter: (colors: Colors) => void
 ) => {
+
   const { width, height } = dimensions;
   const ASPECT_RATIO = width / height;
   const WIDTH = (width / AMOUNT) * window.devicePixelRatio;
@@ -147,6 +148,7 @@ export const renderCube = (
   colors: Colors,
   colorSetter: (colors: Colors) => void
 ) => {
+
   const { width, height } = dimensions;
 
   const camera = new three.PerspectiveCamera(75, width / height, 0.1, 20);

@@ -17,14 +17,19 @@ export default function Cube() {
   useEffect(() => {
     if (!ref.current || !dimensions.width) return;
     if (camera || renderer) return;
-    const { initCamera, initRenderer } = renderCube(
-      ref,
-      dimensions,
-      { title, bg },
-      setColors
-    );
-    setCamera(initCamera);
-    setRenderer(initRenderer);
+
+    try {
+      const { initCamera, initRenderer } = renderCube(
+        ref,
+        dimensions,
+        { title, bg },
+        setColors
+      );
+      setCamera(initCamera);
+      setRenderer(initRenderer);
+    } catch (err) {
+      console.error(err);
+    }
   }, [ref.current, dimensions, camera, renderer, title, bg, setColors]);
 
   return (
