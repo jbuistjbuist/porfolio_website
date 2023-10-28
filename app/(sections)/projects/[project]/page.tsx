@@ -47,7 +47,7 @@ export default function Project() {
   return (
     <Section title={title} next={next} prev={prev}>
       <div className={styles.project}>
-        <Image alt="project image" src={largePhoto} width={400} height={400} />
+        <Image alt="project image" src={largePhoto} width={400} height={400} priority={true}/>
         <div>
           {longDescription.map((paragraph) => (
             <p key={`${Math.random()}`}>{paragraph}</p>

@@ -20,7 +20,8 @@ export default function About() {
           alt="selfie"
           width={400}
           height={400}
-          className={styles.className}
+          className={styles.img}
+          priority={true}
         />
         <div className={styles.text}>
           <p>

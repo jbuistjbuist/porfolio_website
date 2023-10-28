@@ -19,7 +19,7 @@ export default function Projects() {
 
         return (
           <Link href={href} key={title}>
-            <Image alt="project image" src={smallPhoto} width={180} height={180} />
+            <Image alt="project image" src={smallPhoto} width={180} height={180} priority={true} />
             <h2>{title}</h2>
             <p>{shortDescription}</p>
             <div className={styles.techStack}>
