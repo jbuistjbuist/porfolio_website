@@ -43,7 +43,10 @@ export default function Contact() {
     setError(null);
     setSuccess(false);
     setLoading(true);
-    if (!validateData(data)) return;
+    if (!validateData(data)) {
+      setLoading(false);
+      return;
+    }
 
     const res = await axios.post("/api/contact", data);
 
