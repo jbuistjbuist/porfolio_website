@@ -31,9 +31,9 @@ export default function Ai() {
       <UseCustomVh />
       <div className={styles.layout}>
         <div className={styles.messages}>
-          {messages.map((m) => (
+          {messages.map((m, i) => (
+            <div key={m.id}>
             <div
-              key={m.id}
               className={
                 m.role === "user" ? styles.outboundMsg : styles.inboundMsg
               }
@@ -42,6 +42,8 @@ export default function Ai() {
               <ReactMarkdown remarkPlugins={[remarkMath, rehypeKatex]}>
                 {m.content}
               </ReactMarkdown>
+            </div>
+            {i === 0 && <p className={styles.disclaimer}>I tend to prefer open-ended questions, and am a work in progress. Please refer to Jeremy&apos;s resume for the most accurate information about his skills and qualifications.</p>}
             </div>
           ))}
           {isLoading && <div className={styles.inboundMsg}>Loading...</div>}

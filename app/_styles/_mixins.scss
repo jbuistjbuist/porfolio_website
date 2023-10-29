@@ -65,3 +65,23 @@
     border: solid 0.1rem var(--foreground);
   }
 }
+
+
+@mixin message {
+  max-width: 75%;
+  padding: 0.4rem;
+
+  @media screen and (max-width: 600px) {
+    font-size: 14px;
+    
+  }
+  p:first-child {
+    margin-top: 0;
+  }
+  p:last-child {
+    margin-bottom: 0;
+  }
+  a {
+    color: var(--foreground);
+  }
+}

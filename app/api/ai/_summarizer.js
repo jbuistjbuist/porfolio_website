@@ -23,6 +23,7 @@ const chunkSubstr = (str, size) => {
 };
 
 const summarize = async ({ document, inquiry }) => {
+
   const promptTemplate = new PromptTemplate({
     template: inquiry ? summarizerTemplate : summarizerDocumentTemplate,
     inputVariables: inquiry ? ["document", "inquiry"] : ["document"],
@@ -48,6 +49,7 @@ const summarize = async ({ document, inquiry }) => {
 const awaitTimeout = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const summarizeLongDocument = async ({ document, inquiry, onSummaryDone }) => {
+
   // Chunk document into 4000 character chunks
   const templateLength = inquiry
     ? summarizerTemplate.length
@@ -77,15 +79,7 @@ const summarizeLongDocument = async ({ document, inquiry, onSummaryDone }) => {
 
       const result = summarizedChunks.join("\n");
 
-      if (result.length + templateLength > 4000) {
-        return await summarizeLongDocument({
-          document: result,
-          inquiry,
-          onSummaryDone,
-        });
-      } else {
-        return result;
-      }
+      return result;
     } else {
       return document;
     }

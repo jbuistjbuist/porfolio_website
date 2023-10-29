@@ -21,7 +21,7 @@ const initPineconeClient = async () => {
 };
 
 const llm = new OpenAI({
-  temperature: 0.9,
+  temperature: 0.6,
   modelName: "gpt-3.5-turbo",
   openAIApiKey: process.env.OPENAI_API_KEY,
 });
@@ -30,8 +30,6 @@ export async function POST(req) {
   if (!pinecone) {
     await initPineconeClient();
   }
-
-  pinecone?.index("test-index").query
 
   const { messages } = await req.json();
   const { stream, handlers } = LangChainStream();
@@ -56,9 +54,8 @@ export async function POST(req) {
     conversationHistory,
   });
 
-
-
   const inquiry = inquiryChainResult.text;
+
 
   const embedder = new OpenAIEmbeddings({
     modelName: "text-embedding-ada-002",
@@ -66,8 +63,6 @@ export async function POST(req) {
   });
 
   const embeddings = await embedder.embedQuery(inquiry);
-
-  console.log("embeddings", embeddings)
 
   const matches = await getMatchesFromEmbeddings(embeddings, pinecone, 2);
 
@@ -116,7 +111,7 @@ export async function POST(req) {
 
   const chat = new ChatOpenAI({
     streaming: true,
-    temperature: 0.4,
+    temperature: 0.7,
     modelName: "gpt-3.5-turbo",
     openAIApiKey: process.env.OPENAI_API_KEY,
   });

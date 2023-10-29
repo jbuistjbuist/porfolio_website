@@ -29,37 +29,26 @@
   min-height: 220px;
   padding: 1rem;
   overflow-y: scroll;
+  width: 100%;
+
+  div {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .inboundMsg {
   align-self: flex-start;
-  max-width: 75%;
-  padding: 0.4rem;
   border: solid 0.1rem var(--background);
-  p:first-child {
-    margin-top: 0;
-  }
-  p:last-child {
-    margin-bottom: 0;
-  }
-  a: {
-    color: var(--foreground);
-  }
+  @include mixins.message;
 }
 
 .outboundMsg {
-  align-self: flex-end;
-  max-width: 75%;
   text-align: right;
-  padding: 0.5rem;
   background: var(--foreground);
   color: #FFF;
-  p:first-child {
-    margin-top: 0;
-  }
-  p:last-child {
-    margin-bottom: 0;
-  }
+  @include mixins.message;
+  align-self: flex-end;
 }
 
 
@@ -85,4 +74,14 @@
   }
 
   @include mixins.submit-button;
+}
+
+.disclaimer {
+
+  font-size: 0.7rem;
+  color: rgb(89, 89, 89);
+  font-style: italic;
+  max-width: 75%;
+  margin-bottom: 0;
+  margin-top: 0.5rem;
 }
