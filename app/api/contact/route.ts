@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
   try {
     await sendgrid.send({
       to: "jeremy.j.buist@gmail.com", // Your email where you'll receive emails
-      from: "jeremy.j.buist@gmail.com", // your website email address here
+      from: "jeremy@jeremybuist.ca", // your website email address here
       subject: `Contact form submission from jeremybuist.ca`,
       html: `<p>You have a new contact form submission</p>
       <p><strong>Name:</strong> ${data.name}</p>
@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
 
     await sendgrid.send({
       to: `${data.email}`,
-      from: "jeremy.j.buist@gmail.com",
+      from: "jeremy@jeremybuist.ca",
       subject: `Thanks for contacting me!`,
       html: `<p>Hi ${data.name},</p>
       <p>Thanks for reaching out! I'll get back to you as soon as I can.</p>

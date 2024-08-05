@@ -15,7 +15,7 @@ export default function Ai() {
       id: "1",
       role: "system",
       content:
-        "Hello! I am an AI programmed to answer questions about Jeremy and his projects. Ask away!",
+        "Hello! I am an AI programmed to answer questions about Jeremy and his projects. Ask away! **(Needs Maintenance)**",
     },
   ];
 
